@@ -1,1 +1,7 @@
 /img_cache
+
+*.spec
+/build
+/dist
+
+/__pycache__

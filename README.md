@@ -5,3 +5,9 @@
 # 依赖的API
 
 [主页 | LoliAPI](https://loliapi.com/)
+
+# 打包命令
+
+```bash
+pyinstaller -F -w -i icon.png random_wallpaper.py
+```

@@ -4,6 +4,8 @@ import os
 import pystray
 from PIL import Image
 from pystray import MenuItem
+from icon_png import img
+import base64
 
 # 图片缓存路径
 img_cache_dir = os.getcwd()+'\\img_cache'
@@ -58,7 +60,11 @@ def main():
     menu = (MenuItem('清空壁纸缓存', clear_wallpaper_cache),
             MenuItem('换一张', change_wallpaper),
             MenuItem('退出', on_exit))
-    image = Image.open("icon.png")
+    if not os.path.exists('icon.png'):
+        tmp = open('icon.png', 'wb')        #创建临时的文件
+        tmp.write(base64.b64decode(img))    ##把这个one图片解码出来，写入文件中去。
+        tmp.close()
+    image = Image.open('icon.png')
     icon = pystray.Icon("随机壁纸", image, "随机壁纸\n右键“换一张”\n等待五秒", menu)
     icon.run()
 
