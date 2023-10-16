@@ -1,4 +1,7 @@
 /img_cache
+/img_saved
+
+draft.py
 
 *.spec
 /build
