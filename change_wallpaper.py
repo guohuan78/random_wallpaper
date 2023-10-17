@@ -1,9 +1,13 @@
 import ctypes
 import requests
 import os
+import sys
+from plyer import notification
 
-# 图片缓存路径
-IMG_CACHE_DIR = os.getcwd()+'\\img_cache'
+# 程序所在目录
+APP_DIR = os.path.realpath(os.path.dirname(sys.argv[0]))
+# 图片缓存目录
+IMG_CACHE_DIR = APP_DIR + '\\img_cache'
 
 def get_and_cache_img(raw_img_url = "https://www.loliapi.com/acg/pc/?tpye=img"):
     '获取并缓存图片'
@@ -12,7 +16,14 @@ def get_and_cache_img(raw_img_url = "https://www.loliapi.com/acg/pc/?tpye=img"):
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36',
     }
     r = requests.get(raw_img_url,headers=headers)
-    
+    if r.status_code != 200:
+        notification.notify(
+            title = '随机壁纸：获取图片失败',
+            message = str(r.reason),
+            app_icon = None,
+            timeout = 10,
+        )
+        return None
     # 缓存图片
     try:
         if not os.path.exists(IMG_CACHE_DIR):
@@ -45,7 +56,8 @@ def set_wallpaper(filepath):
 
 def change_wallpaper():
     filepath = get_and_cache_img()
-    set_wallpaper(filepath)
+    if filepath is not None:
+        set_wallpaper(filepath)
 
 if __name__ == '__main__':
     change_wallpaper()

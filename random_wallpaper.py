@@ -8,10 +8,12 @@ import base64
 
 from change_wallpaper import change_wallpaper
 
+# 程序所在目录
+from change_wallpaper import APP_DIR
 # 图片缓存路径
 from change_wallpaper import IMG_CACHE_DIR
-# 图片保存路径
-IMG_SAVED_DIR = os.getcwd()+'\\img_saved'
+# 图片保存目录
+IMG_SAVED_DIR = APP_DIR+'\\img_saved'
 
 def get_wallpaper_path():
     '获取壁纸路径'
