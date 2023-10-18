@@ -46,7 +46,7 @@ def get_and_cache_img(raw_img_url = "https://www.loliapi.com/acg/pc/?tpye=img"):
 
 def save_wallpaper_path(filepath):
     '保存壁纸路径到文件'
-    with open('wallpaper_path.txt','w',encoding='utf-8') as f:
+    with open(APP_DIR + '\\wallpaper_path.txt','w',encoding='utf-8') as f:
         f.write(filepath)
 
 def set_wallpaper(filepath):

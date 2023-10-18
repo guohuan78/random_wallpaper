@@ -31,5 +31,5 @@ pyinstaller -F -w -i icon.png random_wallpaper.py
 ```
 
 ```bash
-pyinstaller -F -w -i icon.png change_wallpaper.py
+pyinstaller -F -w -i icon.png change_wallpaper.py --hidden-import plyer.platforms.win.notification
 ```
